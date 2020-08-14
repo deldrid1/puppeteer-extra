@@ -95,6 +95,7 @@ class Plugin extends PuppeteerExtraPlugin {
    * @private
    */
   onRequest(request) {
+    if (request._interceptionHandled) return
     const type = request.resourceType()
     const shouldBlock = this.blockedTypes.has(type)
     this.debug('onRequest', { type, shouldBlock })
